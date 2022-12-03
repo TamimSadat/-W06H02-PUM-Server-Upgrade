@@ -40,7 +40,7 @@ public class RingBuffer {
 		else {
 			mem[in] = value;
 			stored += 1;
-			if (in >= mem.length - 1) {
+			if (in >= mem.length) {
 				in = 0;
 			}
 			else {
@@ -57,7 +57,7 @@ public class RingBuffer {
 			int oldestValue = mem[out];
 			mem[out] = 0;
 			stored -= 1;
-			if (out >= mem.length - 1) {
+			if (out >= mem.length) {
 				out = 0;
 			}
 			else {
