@@ -17,6 +17,39 @@ public class RingBuffer {
 	}
 
 	// TODO implement missing methods
+	public boolean isEmpty() {
+		return mem.length == 0;
+	}
+	public boolean isFull() {
+		if (stored == mem.length - 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public boolean put(int value) {
+		if (!isFull()) {//Wenn nicht voll
+			mem[in] = value;
+			stored += 1;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public int get() {
+		if (!isFull()) {//Wenn nicht voll
+			int oldestValue = mem[out];
+			stored -= 1;
+			return oldestValue;
+		}
+		else {
+			return Integer.MAX_VALUE;
+		}
+	}
+
+
+
 
 	@Override
 	public String toString() {
