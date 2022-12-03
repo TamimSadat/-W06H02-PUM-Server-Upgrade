@@ -26,10 +26,7 @@ public class RingBuffer {
 		}
 	}
 	public boolean isFull() {
-		if (stored < mem.length && mem.length > 0) {
-			return false;
-		}
-		else if (stored >= mem.length - 1 && mem.length > 0) {
+		if (stored >= mem.length - 1) {//maximale Anzahl an Einträgen
 			return true;
 		}
 		else {
@@ -37,19 +34,35 @@ public class RingBuffer {
 		}
 	}
 	public boolean put(int value) {
-		if (stored != mem.length - 1) {//Wenn nicht voll
-			mem[in] = value;
-			stored += 1;
-			return true;
+		if (isFull()) {//Wenn voll
+			return false;
 		}
 		else {
-			return false;
+			mem[in] = value;
+			stored += 1;
+			if (in >= mem.length - 1) {
+				in = 0;
+			}
+			else {
+				in += 1;
+			}
+			return true;
 		}
 	}
 	public int get() {
-		if (!isFull()) {//Wenn nicht voll
+		if (stored == 0) {
+			return Integer.MAX_VALUE;
+		}
+		else if (mem[out] != 0) {//Wenn ältester Wert vorhanden
 			int oldestValue = mem[out];
+			mem[out] = 0;
 			stored -= 1;
+			if (out >= mem.length - 1) {
+				out = 0;
+			}
+			else {
+				out += 1;
+			}
 			return oldestValue;
 		}
 		else {
