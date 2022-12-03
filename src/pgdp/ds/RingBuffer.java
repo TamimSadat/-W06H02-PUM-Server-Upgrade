@@ -18,10 +18,18 @@ public class RingBuffer {
 
 	// TODO implement missing methods
 	public boolean isEmpty() {
-		return mem.length == 0;
+		if (stored == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	public boolean isFull() {
 		if (stored == mem.length - 1) {
+			return true;
+		}
+		else if (mem.length == 0) {
 			return true;
 		}
 		else {
@@ -29,11 +37,12 @@ public class RingBuffer {
 		}
 	}
 	public boolean put(int value) {
-		if (!isFull()) {//Wenn nicht voll
+		if (stored != mem.length - 1) {//Wenn nicht voll
 			mem[in] = value;
 			stored += 1;
 			return true;
-		} else {
+		}
+		else {
 			return false;
 		}
 	}
