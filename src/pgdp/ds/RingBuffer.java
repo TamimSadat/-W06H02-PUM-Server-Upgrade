@@ -27,10 +27,10 @@ public class RingBuffer {
 	}
 	public boolean isFull() {
 		if (stored >= mem.length - 1) {//maximale Anzahl an Einträgen
-			return false;
+			return true;
 		}
 		else {
-			return true;
+			return false;
 		}
 	}
 	public boolean put(int value) {
