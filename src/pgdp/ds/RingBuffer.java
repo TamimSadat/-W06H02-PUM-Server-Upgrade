@@ -26,10 +26,10 @@ public class RingBuffer {
 		}
 	}
 	public boolean isFull() {
-		if (stored == mem.length - 1) {
-			return true;
+		if (stored < mem.length && mem.length > 0) {
+			return false;
 		}
-		else if (mem.length == 0) {
+		else if (stored >= mem.length - 1 && mem.length > 0) {
 			return true;
 		}
 		else {
