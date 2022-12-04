@@ -63,7 +63,7 @@ public class RingBuffer {
 			else {
 				out += 1;
 			}
-			return oldestValue;
+			return mem[out];
 		}
 		else {
 			return Integer.MAX_VALUE;
