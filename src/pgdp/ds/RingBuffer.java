@@ -53,9 +53,9 @@ public class RingBuffer {
 		if (stored == 0) {
 			return Integer.MIN_VALUE;
 		}
-		else if (mem[out] != 0) {//Wenn ältester Wert vorhanden
+		else if (mem[(out)] != 0) {//Wenn ältester Wert vorhanden
 			int oldestValue = mem[out];
-			mem[out] = 0;
+			//mem[out] = 0;
 			stored -= 1;
 			if (out == mem.length - 1) {
 				out = 0;
